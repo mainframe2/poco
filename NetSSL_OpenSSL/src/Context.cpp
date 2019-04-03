@@ -361,7 +361,7 @@ void Context::createSSLContext()
 {
 	if (SSLManager::isFIPSEnabled())
 	{
-		_pSSLContext = SSL_CTX_new(TLSv1_method());
+		_pSSLContext = SSL_CTX_new(TLSv1_2_method());
 	}
 	else
 	{
