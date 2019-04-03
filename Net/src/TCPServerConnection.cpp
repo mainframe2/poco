@@ -46,6 +46,15 @@ void TCPServerConnection::start()
 	}
 	catch (Exception& exc)
 	{
+	// TODO - add precompiled directive POCO_ALLOW_UNKNOWN_CERT so we can eventually commit this change in master
+	// #if defined(POCO_ALLOW_UNKNOWN_CERT)
+		std::string s(exc.what());
+		if (s.compare("error:14094416:SSL routines:ssl3_read_bytes:sslv3 alert certificate unknown"))
+		{
+			return;
+		}
+	// #endif
+
 		ErrorHandler::handle(exc);
 	}
 	catch (std::exception& exc)
